@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+h4 {
+  background-color: rgba(54, 162, 235, 1);
+}
+div.col-sm-4{
+position: absolute;
+  left: 450px;
+}
+div.col-sm-5{
+position: absolute;
+  left:850px;
+}
+</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+  <h4><pre class="/tab"> Menu                                              SalesReport</pre>
+     </h4>
+</head>
+<body>
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+     <strong> 
+          Category
+        <select id="select1" onchange="Report()"> 
+            <option value="Food">Food</option> 
+            <option value="Cloth">Cloth</option> 
+        </select> 
+    </strong> 
+    </div>
+      <div class="col-sm-4">
+      <strong>
+          <center>Product
+        <select style="margin-left:0%" onchange="Report()" id="select2"> 
+            <option value="Burger">Burger</option> 
+            <option value="Pizza">Pizza</option> 
+            <option value="Shirts">Shirts</option> 
+            <option value="Trousers">Trousers</option> 
+        </select> </center>
+    </strong>  
+  </div>
+  <div class="col-sm-5">
+<strong> 
+ <center> Brand
+        <select id="select3" onchange="Report()"> 
+            <option value="Cheetos">Cheetos</option> 
+            <option value="Shirt1">Shirt1</option> 
+            <option value="Trouser1">Trouser1</option> 
+        </select>  </center>
+</strong></div>
+</div>
+</div>
+    <strong class="card-title"><p><center>Sales by Month for</center></p></strong>
+	<div class="card" style=" height: 20rem;">
+    <canvas style="height:200%" id="barChart"></canvas>
+	</div>
+   <!-- End your project here-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Your custom scripts (optional) -->
+  <script>
+var data=[12,19,3,5];
+var ctxB = document.getElementById("barChart").getContext('2d');
+var myBarChart = new Chart(ctxB, {
+type: 'bar',
+data: {
+labels: ["January", "February", "March", "April"],
+datasets: [{
+label:'sales',
+data: data,
+backgroundColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderWidth: 1
+}]
+},
+options: { 
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+			
+function Report()
+{	
+selectElement1 =  
+                    document.querySelector('#select1'); 
+			selectElement2 =  
+                    document.querySelector('#select2'); 
+					
+			selectElement3 =  
+                    document.querySelector('#select3'); 
+                      
+            output1 = selectElement1.value; 
+			output2 = selectElement2.value; 
+			output3 = selectElement3.value; 
+			if(output1=="Food" && output2=="Burger" && (output3=="Cheetos"||output3=="Shirt1"||output3=="Trouser1"))			                
+                          {
+				data=[200,500,400,600];
+				
+			}
+			if (output1=="Food" && (output2=="Pizza"||output2=="Shirts" ) && (output3=="Cheetos"||output3=="Shirt1"||output3=="Trouser1"))
+			{
+				data=[200,100,600,400];
+				
+			}
+			if (output1=="Cloth" && (output2=="Shirts"||output2=="Burger" ||output2=="Pizza")  && (output3=="Shirt1"||output3=="Cheetos"))
+			{
+				data=[600,100,300,100];
+				
+			}
+                        if (output1=="Cloth" && (output2=="Trousers"||output2=="Burger" ||output2=="Pizza")  && (output3=="Shirt1"||output3=="Cheetos"||output3=="Trouser1"))
+			{
+				data=[100,200,300,600];
+				
+			}
+                   if (output1=="Food" && output2=="Shirts" && output3=="Cheetos")
+			{
+				data=[600,100,200,400];
+				
+			}
+                   if (output1=="Cloth" && (output2=="Shirts"||output2=="Trousers") && (output3=="Shirt1"||output3=="Cheetos"))
+			{
+				data=[600,100,300,100];
+				
+			}
+var ctxB = document.getElementById("barChart").getContext('2d');
+var myBarChart = new Chart(ctxB, {
+type: 'bar',
+data: {
+labels: ["January", "February", "March", "April"],
+datasets: [{
+label: 'sales',
+data: data,
+backgroundColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderWidth: 1
+}]
+},
+options: { 
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+}
+ </script>
+
+</body>
+</html>
